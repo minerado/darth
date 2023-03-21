@@ -1,9 +1,15 @@
 const removeIn = (map, keys) => {
-  const [first_keys, last_key] = [keys.slice(0, -1), keys.slice(-1)]
+  const _map = { ...map }
 
-  const _map = Object.assign({}, map)
+  let current = _map
 
-  delete first_keys.reduce((acc, key) => acc[key], _map)[last_key]
+  const len = keys.length - 1
+
+  for (let i = 0; i < len; i++) {
+    current = current[keys[i]]
+  }
+
+  delete current[keys[len]]
 
   return _map
 }
